@@ -80,9 +80,15 @@ open class SnackBar: UIView, SnackBarAction, SnackBarPresentable {
 		view.setupSubview(self) {
 			
 			$0.makeConstraints {
-				$0.bottom.equalTo(view.safeAreaLayoutGuide).offset(200)
-				$0.leading.equalTo(view.safeAreaLayoutGuide).offset(style.padding)
-				$0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-style.padding)
+                if #available(iOS 11.0, *) {
+                    $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(200)
+                    $0.leading.equalTo(view.safeAreaLayoutGuide).offset(style.padding)
+                    $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-style.padding)
+                } else {
+                    $0.bottom.equalTo(view).offset(200)
+                    $0.leading.equalTo(view).offset(style.padding)
+                    $0.trailing.equalTo(view).offset(-style.padding)
+                }
 			}
 		}
 		
@@ -123,7 +129,11 @@ open class SnackBar: UIView, SnackBarAction, SnackBarPresentable {
 		superview?.layoutIfNeeded()
 			
 			self.snp.updateConstraints {
-				$0.bottom.equalTo(self.contextView.safeAreaLayoutGuide).offset(offset)
+                if #available(iOS 11.0, *) {
+                    $0.bottom.equalTo(self.contextView.safeAreaLayoutGuide).offset(offset)
+                } else {
+                    $0.bottom.equalTo(self.contextView).offset(offset)
+                }
 			}
 			UIView.animate(
 				withDuration: 1.2,
