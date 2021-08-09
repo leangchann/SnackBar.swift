@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.author           = { 'Ahmad Almasri' => 'ahmed.almasri@ymail.com' }
   s.source           = { :git => 'https://github.com/ahmedAlmasri/SnackBar.swift.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '13.0'
+  s.ios.deployment_target = '10.0'
   s.swift_version    = '5.0'
 
   s.source_files = 'SnackBar.swift/Classes/**/*'
